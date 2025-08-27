@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class HomeWelcomeHeader extends StatelessWidget {
+class WelcomeHeader extends StatelessWidget {
   final String? userName;
   
-  const HomeWelcomeHeader({
+  const WelcomeHeader({
     super.key,
     this.userName,
   });
