@@ -1,10 +1,11 @@
-
 import 'package:digital_episode/data/models/all_movie_model.dart';
 import 'package:digital_episode/data/models/all_series_model.dart';
 import 'package:digital_episode/data/models/new_series_model.dart';
 import 'package:digital_episode/data/models/tv_shows_model.dart';
 import 'package:equatable/equatable.dart';
 
+/// Ana sayfa state'lerini temsil eden abstract sınıf
+/// Tüm state'ler bu sınıftan türer
 abstract class HomeState extends Equatable {
   const HomeState();
 
@@ -12,14 +13,17 @@ abstract class HomeState extends Equatable {
   List<Object?> get props => [];
 }
 
+/// İlk state - veri yüklenmemiş
 class HomeInitial extends HomeState {
   const HomeInitial();
 }
 
+/// Yükleme state'i - veriler yükleniyor
 class HomeLoading extends HomeState {
   const HomeLoading();
 }
 
+/// Yüklendi state'i - veriler başarıyla yüklendi
 class HomeLoaded extends HomeState {
   final List<NewSeriesModel> newSeries;
   final List<TvShowsModel> tvShows;
@@ -39,6 +43,7 @@ class HomeLoaded extends HomeState {
     this.searchQuery = '',
   });
 
+  /// State'i kopyalar - immutable state yönetimi için
   HomeLoaded copyWith({
     List<NewSeriesModel>? newSeries,
     List<TvShowsModel>? tvShows,
@@ -59,7 +64,7 @@ class HomeLoaded extends HomeState {
     );
   }
 
-  // Getter'lar - kolaylık için
+  // Kolay erişim için getter'lar
   bool get hasSearchResults => searchResults.isNotEmpty;
   bool get isSearchActive => isSearching && searchQuery.isNotEmpty;
   int get totalItemsCount => newSeries.length + tvShows.length + movies.length + allSeries.length;
@@ -83,6 +88,7 @@ class HomeLoaded extends HomeState {
   }
 }
 
+/// Hata state'i - veri yükleme sırasında hata oluştu
 class HomeError extends HomeState {
   final String message;
   final String? errorCode;

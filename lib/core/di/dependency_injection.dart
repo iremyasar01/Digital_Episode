@@ -20,15 +20,3 @@ class DependencyInjection {
   }
 }
 
-// main.dart içinde kullanım:
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await DependencyInjection.init();
-//   runApp(MyApp());
-// }
-
-// HomeScreen'de kullanım:
-// BlocProvider(
-//   create: (context) => HomeCubit(getIt<HomeRepositoryInterface>()),
-//   child: const HomeView(),
-// )

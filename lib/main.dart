@@ -1,10 +1,12 @@
-import 'package:digital_episode/core/di/dependency_injection.dart';
+//import 'package:digital_episode/core/di/dependency_injection.dart';
+import 'package:digital_episode/locator.dart';
 import 'package:digital_episode/presentation/splash/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() async{
    WidgetsFlutterBinding.ensureInitialized();
-   await DependencyInjection.init();
+     await setupDependencyInjection();
+  // await DependencyInjection.init();
   runApp(const MyApp());
 }
 
