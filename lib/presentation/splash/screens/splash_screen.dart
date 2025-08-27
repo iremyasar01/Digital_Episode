@@ -1,4 +1,4 @@
-import 'package:episode_new/screens/home_screen.dart';
+import 'package:digital_episode/presentation/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,15 +12,16 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 
  Future.delayed(const Duration(seconds: 2), (){
+
+// ignore: use_build_context_synchronously
 Navigator.of(context).pushReplacement(
   MaterialPageRoute(builder: 
   (_)=> const HomeScreen(),));
- });
+  });
   }
   @override
  void dispose(){

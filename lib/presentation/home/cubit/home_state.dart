@@ -1,0 +1,97 @@
+
+import 'package:digital_episode/data/models/all_movie_model.dart';
+import 'package:digital_episode/data/models/all_series_model.dart';
+import 'package:digital_episode/data/models/new_series_model.dart';
+import 'package:digital_episode/data/models/tv_shows_model.dart';
+import 'package:equatable/equatable.dart';
+
+abstract class HomeState extends Equatable {
+  const HomeState();
+
+  @override
+  List<Object?> get props => [];
+}
+
+class HomeInitial extends HomeState {
+  const HomeInitial();
+}
+
+class HomeLoading extends HomeState {
+  const HomeLoading();
+}
+
+class HomeLoaded extends HomeState {
+  final List<NewSeriesModel> newSeries;
+  final List<TvShowsModel> tvShows;
+  final List<AllMoviesModel> movies;
+  final List<AllSeriesModel> allSeries;
+  final bool isSearching;
+  final List<dynamic> searchResults;
+  final String searchQuery;
+
+  const HomeLoaded({
+    required this.newSeries,
+    required this.tvShows,
+    required this.movies,
+    required this.allSeries,
+    this.isSearching = false,
+    this.searchResults = const [],
+    this.searchQuery = '',
+  });
+
+  HomeLoaded copyWith({
+    List<NewSeriesModel>? newSeries,
+    List<TvShowsModel>? tvShows,
+    List<AllMoviesModel>? movies,
+    List<AllSeriesModel>? allSeries,
+    bool? isSearching,
+    List<dynamic>? searchResults,
+    String? searchQuery,
+  }) {
+    return HomeLoaded(
+      newSeries: newSeries ?? this.newSeries,
+      tvShows: tvShows ?? this.tvShows,
+      movies: movies ?? this.movies,
+      allSeries: allSeries ?? this.allSeries,
+      isSearching: isSearching ?? this.isSearching,
+      searchResults: searchResults ?? this.searchResults,
+      searchQuery: searchQuery ?? this.searchQuery,
+    );
+  }
+
+  // Getter'lar - kolaylık için
+  bool get hasSearchResults => searchResults.isNotEmpty;
+  bool get isSearchActive => isSearching && searchQuery.isNotEmpty;
+  int get totalItemsCount => newSeries.length + tvShows.length + movies.length + allSeries.length;
+
+  @override
+  List<Object?> get props => [
+        newSeries,
+        tvShows,
+        movies,
+        allSeries,
+        isSearching,
+        searchResults,
+        searchQuery,
+      ];
+
+  @override
+  String toString() {
+    return 'HomeLoaded(newSeries: ${newSeries.length}, tvShows: ${tvShows.length}, '
+           'movies: ${movies.length}, allSeries: ${allSeries.length}, '
+           'isSearching: $isSearching, searchQuery: $searchQuery)';
+  }
+}
+
+class HomeError extends HomeState {
+  final String message;
+  final String? errorCode;
+
+  const HomeError(this.message, {this.errorCode});
+
+  @override
+  List<Object?> get props => [message, errorCode];
+
+  @override
+  String toString() => 'HomeError(message: $message, errorCode: $errorCode)';
+}

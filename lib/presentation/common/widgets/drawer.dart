@@ -1,17 +1,8 @@
-import 'package:episode_new/components/my_list_tile.dart';
-import 'package:episode_new/screens/all_movies_screen.dart';
-import 'package:episode_new/screens/all_tv_shows_screen.dart';
-//import 'package:episode_new/screens/all_movies_screen.dart';
-//import 'package:episode_new/screens/all_tv_shows_screen.dart';
-import 'package:episode_new/screens/favorites_screen.dart';
-import 'package:episode_new/screens/home_screen.dart';
-import 'package:episode_new/screens/login_screen.dart';
-import 'package:episode_new/screens/new_series_screen.dart';
-import 'package:episode_new/screens/watchlist_screen.dart';
-//import 'package:episode_new/screens/login_screen.dart';
-//import 'package:episode_new/screens/watchlist_screen.dart';
+
+import 'package:digital_episode/presentation/common/widgets/my_list_tile.dart';
+import 'package:digital_episode/presentation/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter/src/widgets/navigator.dart';
+
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
 
@@ -30,10 +21,11 @@ class _MyDrawerState extends State<MyDrawer> {
         color: Colors.white,
         size: 24,),
         ),
-         MyListTile(icon:Icons.home ,text: "home",  OnTap: () =>
+         MyListTile(icon:Icons.home ,text: "home",  onTap: () =>
         Navigator.push(
        context,
         MaterialPageRoute(builder: (context) => const HomeScreen())) ),
+        /*
         MyListTile(icon: Icons.tv, text:"WatchList",OnTap: () =>
         Navigator.push(context,
         MaterialPageRoute(builder: (context) => const WatchlistScreen())) ),
@@ -50,14 +42,13 @@ class _MyDrawerState extends State<MyDrawer> {
         Navigator.push(
        context,
         MaterialPageRoute(builder: (context) => const NewSeriesScreen())) ),
-        MyListTile( text: "log out",icon: Icons.exit_to_app_outlined,OnTap: () =>
-        Navigator.push(
-       context,
-        MaterialPageRoute(builder: (context) => const LoginScreen())) ),
-
+     
+*/
      
         ],
        
-      ),);
+      ),
+      );
+    
   }
 }

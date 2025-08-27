@@ -1,8 +1,10 @@
-//import 'package:episode_new/screens/home_screen.dart';
-import 'package:episode_new/screens/splash_screen.dart';
+import 'package:digital_episode/core/di/dependency_injection.dart';
+import 'package:digital_episode/presentation/splash/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async{
+   WidgetsFlutterBinding.ensureInitialized();
+   await DependencyInjection.init();
   runApp(const MyApp());
 }
 
